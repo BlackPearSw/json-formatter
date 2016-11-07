@@ -58,11 +58,14 @@ angular.module('jsonFormatter', ['RecursionHelper'])
         return 'Object';
     }
 
-    //ES6 default gives name to constructor 
+    /* jshint ignore:start */
+
+    //ES6 default gives name to constructor
     if (object.__proto__ !== undefined && object.__proto__.constructor !== undefined && object.__proto__.constructor.name !== undefined) {
       return object.__proto__.constructor.name;
-    } 
-       
+    }
+    /* jshint ignore:end */
+
     var funcNameRegex = /function (.{1,})\(/;
     var results = (funcNameRegex).exec((object).constructor.toString());
     if (results && results.length > 1) {
@@ -139,9 +142,9 @@ angular.module('jsonFormatter', ['RecursionHelper'])
       }
 
       // Add custom type for URLs
-      if (scope.json.indexOf('http') === 0) {
-        scope.isUrl = true;
-      }
+      //if (scope.json.indexOf('http') === 0) {
+      //  scope.isUrl = true;
+      //}
     }
 
     scope.isEmptyObject = function () {
