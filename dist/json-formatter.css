@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.6.1 - 2016-11-07T19:56:40.652Z
+ * Version: 0.6.1 - 2017-10-13T12:40:16.289Z
  * License: Apache-2.0
  */
 
@@ -30,7 +30,6 @@
 }
 .json-formatter-row .string {
   color: green;
-  white-space: pre;
   word-wrap: break-word;
 }
 .json-formatter-row .number {
@@ -113,7 +112,6 @@
 }
 .json-formatter-dark.json-formatter-row .string {
   color: #31F031;
-  white-space: pre;
   word-wrap: break-word;
 }
 .json-formatter-dark.json-formatter-row .number {
