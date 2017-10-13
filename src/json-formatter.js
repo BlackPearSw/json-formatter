@@ -8,6 +8,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
   var hoverPreviewEnabled = false;
   var hoverPreviewArrayCount = 100;
   var hoverPreviewFieldCount = 5;
+  var linkClickFn;
 
   return {
     get hoverPreviewEnabled() {
@@ -31,11 +32,19 @@ angular.module('jsonFormatter', ['RecursionHelper'])
       hoverPreviewFieldCount = parseInt(value, 10);
     },
 
+    get linkClickFn() {
+      return linkClickFn;
+    },
+    set linkClickFn(value) {
+      linkClickFn = value;
+    },
+
     $get: function () {
       return {
         hoverPreviewEnabled: hoverPreviewEnabled,
         hoverPreviewArrayCount: hoverPreviewArrayCount,
-        hoverPreviewFieldCount: hoverPreviewFieldCount
+        hoverPreviewFieldCount: hoverPreviewFieldCount,
+        linkClickFn: linkClickFn
       };
     }
   };
@@ -142,9 +151,9 @@ angular.module('jsonFormatter', ['RecursionHelper'])
       }
 
       // Add custom type for URLs
-      //if (scope.json.indexOf('http') === 0) {
-      //  scope.isUrl = true;
-      //}
+      if (scope.json.indexOf('http') === 0) {
+        scope.isUrl = !!JSONFormatterConfig.linkClickFn;
+      }
     }
 
     scope.isEmptyObject = function () {
@@ -153,6 +162,7 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
 
+    // If 'open' attribute is present
     // If 'open' attribute is present
     scope.isOpen = !!scope.open;
     scope.toggleOpen = function () {
@@ -166,8 +176,9 @@ angular.module('jsonFormatter', ['RecursionHelper'])
     };
 
     scope.openLink = function (isUrl) {
-      if(isUrl) {
-        window.location.href = scope.json;
+      if(isUrl && JSONFormatterConfig.linkClickFn) {
+        JSONFormatterConfig.linkClickFn(scope.json);
+        //window.location.href = scope.json;
       }
     };
 
