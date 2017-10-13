@@ -1,7 +1,7 @@
 /*!
  * jsonformatter
  * 
- * Version: 0.6.1 - 2017-10-13T12:40:16.283Z
+ * Version: 0.7.0 - 2017-10-13T14:42:25.541Z
  * License: Apache-2.0
  */
 
